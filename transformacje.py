@@ -28,9 +28,6 @@ class Transformacje:
         self.flat = (self.A - self.B) / self.A
         self.ecc = sqrt(2 * self.flat - self.flat ** 2) # eccentricity  WGS84:0.0818191910428 
         self.ecc2 = (2 * self.flat - self.flat ** 2) # eccentricity**2
-        print(self.ecc2)
-
-
     
     def xyz2plh(self, X, Y, Z, output = 'dec_degree'):
         """
@@ -119,7 +116,8 @@ class Transformacje:
         if 22.5 < l <= 25.5:
             return 24*pi/180
 
-    def u1992(self, xgk:float, ygk:float):
+    def u1992(self, f:float, l:float):
+        xgk, ygk = self.fl2xy(f, l)
         x = xgk * 0.9993-5300000
         y = ygk *0.9993+500000
         return x, y
@@ -138,9 +136,9 @@ class Transformacje:
         z = (N*(1-self.ecc2)+h)*sin(f)
         return x, y, z
 
-    def azymut_elewacja(self, f, l, h):
+    def azymut_elewacja(self, f, l, h, x, y, z):
 
-        n, e, u = self.neu(f, l, h)
+        n, e, u = self.neu(f, l, h, x, y, z)
 
         #AZYMUT I ELEWACJA DO SATELITY
 
@@ -153,7 +151,7 @@ class Transformacje:
 
         return azymut, elewacja
 
-    def neu(self, f, l, h):
+    def neu(self, f, l, h, X, Y, Z):
         N = self.func_n(f)
         
         Xp = (N + h) * cos(f) * cos(l)
@@ -178,13 +176,13 @@ class Transformacje:
         x2, y2 = p2[0], p2[1]
         return sqrt((x2 - x1)**2+(y2 - y1)**2)
 
-    def odl2d(self, p1, p2):
+    def odl3d(self, p1, p2):
         x1, y1, z1 = p1[0], p1[1], p1[2]
         x2, y2, z2 = p2[0], p2[1], p1[2]
         return sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)
 
 
-
+    header = "Konwersja współrzędnych geodezyjnych \\ Karolina Mazurek\n   X             Y             Z               f            l            h           N             E              U          u2000_x       u2000_y       u1992_x       u1992_y         azymut      elewacja       odl_2d      odl_3d"
 
 if __name__ == "__main__":
     # utworzenie obiektu
