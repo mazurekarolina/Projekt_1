@@ -1,5 +1,5 @@
 # Projekt_1
-Projekt 1 na Informatykę geodeyzjną 2 w semestrze letnim roku akademickiego 2021/22
+Projekt 1 na Informatykę geodezyjną 2 w semestrze letnim roku akademickiego 2021/22
 ## Instrukcja
 1. Upewnić się, że w środowisku zainstalowano numpy -  jeśli nie: instrukcja instalacji dostępna jest pod [tym linkiem](https://numpy.org/install/)
 2. Odpalić plik 'prog.py'
