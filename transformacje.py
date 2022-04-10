@@ -83,5 +83,6 @@ if __name__ == "__main__":
     print(phi, lam, h)
     phi, lam, h = geo.xyz2plh2(X, Y, Z)
     print(phi, lam, h)
+    print("testing git")
         
     
