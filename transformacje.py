@@ -178,7 +178,7 @@ class Transformacje:
 
     def odl3d(self, p1, p2):
         x1, y1, z1 = p1[0], p1[1], p1[2]
-        x2, y2, z2 = p2[0], p2[1], p1[2]
+        x2, y2, z2 = p2[0], p2[1], p2[2]
         return sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)
 
 
